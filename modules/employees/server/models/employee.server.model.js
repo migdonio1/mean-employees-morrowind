@@ -27,12 +27,21 @@ var EmployeeSchema = new Schema({
     trim: true
   },
   salary: {
-    type: number,
-    default: 0
+    type: Number,
+    default: 0,
+    min: 0
+  },
+  birthday: {
+    type: String,
+    default: getNow
   },
   created: {
     type: String,
     default: getNow
+  },
+  employeeImageURL: {
+    type: String,
+    default: 'modules/employees/client/img/employee/default.png'
   },
   user: {
     type: Schema.ObjectId,
