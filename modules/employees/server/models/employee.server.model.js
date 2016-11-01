@@ -4,7 +4,12 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+    moment = require('moment-timezone'),
+    Schema = mongoose.Schema;
+
+var getNow = function() {
+  return moment.tz('UTC').format();
+};
 
 /**
  * Employee Schema
@@ -16,9 +21,18 @@ var EmployeeSchema = new Schema({
     required: 'Please fill Employee name',
     trim: true
   },
+  lastname: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  salary: {
+    type: number,
+    default: 0
+  },
   created: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: getNow
   },
   user: {
     type: Schema.ObjectId,
