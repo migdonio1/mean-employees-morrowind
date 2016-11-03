@@ -2,6 +2,7 @@
   'use strict';
 
   // Employees controller
+  //noinspection JSAnnotator
   angular
     .module('employees')
     .controller('EmployeesController', EmployeesController);
@@ -20,9 +21,24 @@
 
     // Remove existing Employee
     function remove() {
-      if ($window.confirm('Are you sure you want to delete?')) {
-        vm.employee.$remove($state.go('employees.list'));
-      }
+
+      swal({
+            title: "Are you sure?",
+            text: "Your will not be able to recover this employee!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            closeOnConfirm: false,
+            closeOnCancel: false },
+          function(isConfirm){
+            if (isConfirm) {
+              swal("Deleted!", "Your employee has been deleted.", "success");
+              vm.employee.$remove($state.go('employees.list'));
+            } else {
+              swal("Cancelled", "Your employee is safe :)", "error");
+            }
+          });
     }
 
     // Save Employee
