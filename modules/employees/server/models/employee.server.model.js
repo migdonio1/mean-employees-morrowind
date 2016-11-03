@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    moment = require('moment-timezone'),
-    Schema = mongoose.Schema;
+  moment = require('moment-timezone'),
+  Schema = mongoose.Schema;
 
 var getNow = function() {
   return moment.tz('UTC').format();
